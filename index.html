@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title></title>
+  <link href="style.css" rel="stylesheet" />
+  <style>
+    body {
+      background: url("https://media.giphy.com/media/3o6EhOYMhOTANYgHMk/giphy.gif") no-repeat center center fixed;
+      background-size: cover;
+      text-align: center;
+      font-family: "Poppins", sans-serif;
+      color: white;
+    }
+
+    #center {
+      background-color: transparent !important;
+      border-radius: 20px;
+      padding: 30px;
+      margin: 20vh auto;
+      max-width: 500px;
+      width: auto;
+      font-size: 1rem;
+      line-height: 1.5;
+      transition: opacity 0.5s ease;
+    }
+
+    #center p {
+      background-color: transparent !important;
+    }
+
+    #cake {
+      width: 150px;
+      cursor: pointer;
+      margin-top: 50px;
+    }
+
+    #nextBtn {
+      background: #ff4fb2;
+      border: none;
+      padding: 10px 20px;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-top: 20px;
+      transition: background 0.3s;
+    }
+
+    #nextBtn:hover {
+      background: #e43e9c;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+      color: white;
+      font-size: 14px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    }
+  </style>
+</head>
+
+<body>
+  <audio id="birthdayMusic" src="happy-birthday-to-you-piano-version-13976.mp3" loop></audio>
+
+  <div id="content">
+    <marquee direction="down" width="100%" height="770" behavior="alternate" scrollamount="15">
+      <marquee behavior="alternate">
+        <img id="cake" src="birthday-cake-icon.png" alt="Birthday Cake" />
+      </marquee>
+    </marquee>
+  </div>
+
+  <footer>
+    Dari UGM, dengan UGM, untuk UGM 💙 Hidup Jokowi
+  </footer>
+
+  <script>
+    const cake = document.getElementById('cake');
+    const music = document.getElementById('birthdayMusic');
+    const content = document.getElementById('content');
+
+    const messages = [
+      "Hai sayang... kita sudah saling kenal sekitar 8 bulanan yaa. Ngga kerasa yaa, memang waktu mempercepat setiap detiknya💫",
+      "Hari ini istimewa banget... Because it's your 21st birthday. Pertarungan baru dimulai, dan aku bersyukur bisa jadi bagian kecil dari Pertarunganmu dan aku berharap akan terus ikut di Pertarunganmu.",
+      "... congrats on surviving your teen years?",
+      "today is a very special day... not just for you, but for everyone lucky enough to know you. It's the day the world got brighter because you were born.",
+      "Thank you Nash, for being here, for your love, and for every beautiful moment we share. I wish you happiness, success, and dreams that all come true.",
+      "And of course... Happy birthday, my dearest Nashi❤️"
+    ];
+
+    let index = 0;
+
+    cake.addEventListener('click', () => {
+      if (music.paused) {
+        music.play();
+      }
+
+      showMessage(index);
+    });
+
+    function showMessage(i) {
+      content.innerHTML = `
+        <div id="center">
+          <p class="message-text" style="background-color: rgba(255, 255, 255, 0.85) !important; padding: 15px 25px !important; border-radius: 12px !important; backdrop-filter: blur(5px) !important; display: inline-block !important;">${messages[i]}</p>
+          ${i < messages.length - 1
+            ? '<button id="nextBtn">Next →</button>'
+            : '<p style="background-color: transparent !important;">Sampai ketemu yaa!</p>'}
+        </div>
+      `;
+
+      const nextBtn = document.getElementById('nextBtn');
+      if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+          index++;
+          showMessage(index);
+        });
+      }
+    }
+  </script>
+</body>
+</html>
